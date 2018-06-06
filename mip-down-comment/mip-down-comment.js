@@ -89,10 +89,11 @@ define(function (require) {
         function readComment() {
             oli = oul.find('li');
             p = Math.floor(oli.length / 5 + 1);
+            var cmt = $('#CommentTpye').val() || 0;
             $.ajax({
                 type: 'get',
                 url: ajaxUrl + 'sajax.asp',
-                data: 'action=0&id=' + oid + '&page=' + p + '&CommentTpye=0',
+                data: 'action=0&id=' + oid + '&page=' + p + '&CommentTpye=' + cmt,
                 success: function (data) {
                     var html = '';
                     var data = (new Function('', 'return' + data))();

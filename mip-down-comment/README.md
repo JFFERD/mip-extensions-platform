@@ -1,6 +1,6 @@
 # mip-comment-down
 
-mip-comment-down 用来支持文章详情页的评论
+mip-comment-down 用来支持不同类型的详情页的评论
 
 标题|内容
 ----|----
@@ -30,6 +30,7 @@ mip-comment-down 用来支持文章详情页的评论
 				<span id="cancel" class="button">取消</span>
 			</fieldset>
 			<input type="hidden" id="app-id" value="109066" />
+      <input type="hidden" value="8" name="CommentTpye" id="CommentTpye" />
 	    </mip-form>
 	</section>
 </mip-down-comment>
