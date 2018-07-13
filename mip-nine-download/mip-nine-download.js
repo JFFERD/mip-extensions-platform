@@ -183,11 +183,18 @@ define(function (require) {
                 $('.tags-tab ul li').eq(iNow).addClass('active').siblings().removeClass('active');
             }
         },
+        ntj: function () {
+            $('.game-detail-main .bxz').on('click', function () {
+                var img = new Image();
+                img.src = 'https://stat-api.20hn.cn/jf.gif?web_id=7&id=' + this.webInfoId + '&cate_id=' + this.webInfoCid + '&cate=' + $('#fnav .cata').text() + '&title=' + $('.game-detail-main h1').text() + '&device=1';
+            });
+        },
         init: function () {
             this.scrollNav();
             this.titTab(); // 菜单切换
             this.downHref(); // 动态下载地址
             this.touchSlide(); // 滑动切换
+            this.ntj(); // 本地统计
         }
     };
     customElem.prototype.createdCallback = function () {
