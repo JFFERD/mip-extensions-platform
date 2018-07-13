@@ -24,7 +24,7 @@ define(function (require) {
             var pic = con.find('img');
             var zs = txt.length;
             var piclen = pic.length;
-            if (con.height() > 200) {
+            if (con.height() > 834) {
                 var muban = '<section class="click_more"><div class="slide-btn">';
                 muban += '<span>展开，查看全部</span><i></i></div></section>';
                 var newcon = con.find('.artbody');
@@ -235,6 +235,28 @@ define(function (require) {
                     con.find('.m-slide1').css('height', firstImgHeight);
                 }
             }, 500);
+        } else if (gtype === 'g87_news_tab') {
+            var con = $(t);
+            var tabsnav = con.attr('tabs-nav');
+            var navcur = con.attr('nav-cur');
+            var tabskey = con.attr('tabs-key');
+            con.find(tabskey).each(function (index) {
+                if ($.trim($(this).find('ul').html()) === '') {
+                    $(this).remove();
+                    con.find(tabsnav).eq(index).remove();
+                }
+            });
+            con.find(tabskey).hide();
+            con.find(tabsnav).click(function () {
+                con.find(tabskey).hide();
+                con.find(tabskey).eq($(this).index()).show();
+                con.find(tabsnav).removeClass(navcur);
+                $(this).addClass(navcur);
+            });
+            if (con.find(tabsnav).length === 1) {
+                con.find(tabsnav).parent().css('width', '50%');
+            }
+            con.find(tabsnav).eq(0).click();
         }
     };
     return customElement;

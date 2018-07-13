@@ -7,6 +7,14 @@
 类型|业务组件
 所需脚本|https://c.mipcdn.com/static/v1/mip-zmall-tab-anchor/mip-zmall-tab-anchor.js
 
+## 更新
+
+### 2018.06.22 (1.0.2)
+- 解决当没有某个模块tab的时候的报错问题
+
+### 2018.06.19 (1.0.1)
+- 修改样式
+
 ## 示例
 
 ### 基本用法

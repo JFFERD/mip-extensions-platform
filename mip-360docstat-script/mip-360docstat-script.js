@@ -10,6 +10,7 @@ define(function (require) {
         var element = $(this.element);
         var ele = this.element;
         var address = ele.getAttribute('data-target');
+        getBlockArt();
         if ($(element.find('.mip-360doc-script-wxggalink')) !== null) {
             $(element.find('.mip-360doc-script-wxggalink')).html('<span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/zhaishou2.png\' class=\'pic2\'/></span><span class=\'mip-360doc-script-pic\'><img src=\'https://pubimage.360doc.com/transfer/images/xiazai2.png\'  class=\'pic2\'/></span>');
             var picn = $(element.find('.mip-360doc-script-pic')).length;
@@ -21,8 +22,11 @@ define(function (require) {
             setone();
         }
         getRefNum();// 鲜花
-        //  统计
-        record();
+        // 只统计非搜索引擎访问
+        if (navigator.userAgent.toLowerCase().indexOf('spider') === -1
+        && navigator.userAgent.toLowerCase().indexOf('bot') === -1) {
+            record();
+        }
         //  检测广告
         var t = setTimeout(function () {
             check();
@@ -63,7 +67,6 @@ define(function (require) {
                 sendlog('Componentclick?id=8');
             });
         }
-        getBlockArt();
         if ($(element.find('.mip-360doc-script-keyword')) !== null) {
             parseSearchWord();
         }

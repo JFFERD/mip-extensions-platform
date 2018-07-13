@@ -1,0 +1,14 @@
+{
+    "name": "mip-ruby-scrollup",
+    "version": "1.0.1",
+    "description": "用来支持 MIP 中内容向上滚动展示，支持图片",
+    "contributors": [
+        {
+            "name": "zl",
+            "email": "zl@qq.com"
+        }
+    ],
+    "engines": {
+        "mip": ">=1.1.0"
+    }
+}

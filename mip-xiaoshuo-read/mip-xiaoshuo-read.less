@@ -32,7 +32,15 @@ mip-xiaoshuo-read {
     ul {
         list-style: none;
     }
-
+    .optoggle1 {
+        opacity: 1;
+    }
+    .optoggle0 {
+        opacity: 0;
+    }
+    .transiton-init {
+        transition: all ease 240ms;
+    }
     // 底部控制条
     .mip-xiaoshuo-read-control {
         display: none;
@@ -41,7 +49,7 @@ mip-xiaoshuo-read {
         left: 0;
         width: 100%;
         background-color: #fff;
-        box-shadow: 0 -6px 9px 0 rgba(0,0,0,0.10);
+        box-shadow: 0 -6px 9px 0 rgba(0, 0, 0, 0.10);
         z-index: 200;
     }
     &.show-mask:after {
@@ -49,28 +57,57 @@ mip-xiaoshuo-read {
         display: block;
         width: 100%;
         height: 100%;
-        background-color: rgba(0,0,0,0.10);
+        background-color: rgba(0, 0, 0, 1);
+        opacity: .1;
         left: 0;
         top: 0;
         position: fixed;
         z-index: 100;
+        -webkit-animation: anim 240ms ease;
+        animation: anim 240ms ease;
     }
-    &.show-control [control],
+    &.show-control [control] {
+        -webkit-transition: all ease 240ms;
+        transition: all ease 240ms;
+        -webkit-animation: control 240ms ease;
+        animation: control 240ms ease;
+        display: block;
+
+    }
     &.show-theme [theme] {
+        -webkit-animation: themechange 240ms ease;
+        animation: themechange 240ms ease;
         display: block;
     }
+    &.rea [control] {
+        display: block;
+        -webkit-animation: controlre 240ms ease;
+        animation: controlre 240ms ease;
 
+    }
+    &.non [control] {
+        display: none;
+    }
     // 分页浮层
     .mip-xiaoshuo-read-control-page {
         .mip-xiaoshuo-read-flex;
         .mip-xiaoshuo-read-padding;
-        border-bottom: 1px solid #f1f1f1;
+        -webkit-transition: all ease 240ms;
+        transition: all ease 240ms;
+        border-bottom: 1px solid;
+        border-bottom-color: #f1f1f1;
         height: 54px;
         line-height: 54px;
         .disabled {
+            -webkit-transition: all ease 240ms;
+            transition: all ease 240ms;
             color: #a0a0a0;
             cursor: not-allowed;
         }
+    }
+    .mip-xiaoshuo-read-control-page.page-end {
+        border-bottom: 0;
+        margin: 0 -17px;
     }
 
     // 异步按钮浮层
@@ -105,12 +142,15 @@ mip-xiaoshuo-read {
         }
         .theme-default {
             background-color: #eee;
+
         }
         .theme-green {
             background-color: #D7E0CB;
+
         }
         .theme-paper {
             background-color: #ECDABB;
+
         }
     }
 
@@ -121,6 +161,7 @@ mip-xiaoshuo-read {
             .mip-xiaoshuo-read-flex;
         }
         li {
+
             padding: 10px 0;
             cursor: pointer;
         }
@@ -153,13 +194,15 @@ mip-xiaoshuo-read {
         .reduce {
             padding-right: 20px;
             font-size: 26px;
+            cursor: none;
         }
         .increase {
             padding-left: 20px;
             font-size: 26px;
+            cursor: none;
         }
     }
-    
+
     // 内容
     [content] {
         padding-top: 15px;
@@ -178,38 +221,78 @@ html[mip-xiaoshuo-read-font-size="1"] mip-xiaoshuo-read [content],
 html[mip-xiaoshuo-read-font-size="1"] mip-xiaoshuo-read [content] p {
     font-size: 12px;
 }
+
+// 换色和变字号
+html[mip-xiaoshuo-read-font-size="1.5"] mip-xiaoshuo-read [content],
+html[mip-xiaoshuo-read-font-size="1.5"] mip-xiaoshuo-read [content] p {
+    font-size: 13px;
+}
+
 html[mip-xiaoshuo-read-font-size="2"] mip-xiaoshuo-read [content],
 html[mip-xiaoshuo-read-font-size="2"] mip-xiaoshuo-read [content] p {
     font-size: 14px;
 }
+
+html[mip-xiaoshuo-read-font-size="2.5"] mip-xiaoshuo-read [content],
+html[mip-xiaoshuo-read-font-size="2.5"] mip-xiaoshuo-read [content] p {
+    font-size: 15px;
+}
+
 html[mip-xiaoshuo-read-font-size="3"] mip-xiaoshuo-read [content],
 html[mip-xiaoshuo-read-font-size="3"] mip-xiaoshuo-read [content] p {
     font-size: 16px;
 }
+
+html[mip-xiaoshuo-read-font-size="3.5"] mip-xiaoshuo-read [content],
+html[mip-xiaoshuo-read-font-size="3.5"] mip-xiaoshuo-read [content] p {
+    font-size: 17px;
+}
+
 html[mip-xiaoshuo-read-font-size="4"] mip-xiaoshuo-read [content],
 html[mip-xiaoshuo-read-font-size="4"] mip-xiaoshuo-read [content] p {
     font-size: 18px;
 }
+
+html[mip-xiaoshuo-read-font-size="4.5"] mip-xiaoshuo-read [content],
+html[mip-xiaoshuo-read-font-size="4.5"] mip-xiaoshuo-read [content] p {
+    font-size: 19px;
+}
+
 html[mip-xiaoshuo-read-font-size="5"] mip-xiaoshuo-read [content],
 html[mip-xiaoshuo-read-font-size="5"] mip-xiaoshuo-read [content] p {
     font-size: 20px;
 }
 
+html[mip-xiaoshuo-read-theme=default] li[mode-default] {
+    display: none;
+}
+
 // 换主题
 html[mip-xiaoshuo-read-theme="green"] mip-xiaoshuo-read [content] {
+    -webkit-transition: background-color ease 240ms;
+    transition: background-color ease 240ms;
     background-color: #d7e0cb;
     color: #3B3F2F;
 }
+
 html[mip-xiaoshuo-read-theme="default"] mip-xiaoshuo-read [content] {
+    -webkit-transition: background-color ease 240ms;
+    transition: background-color ease 240ms;
     background-color: #eee;
     color: #333;
 }
+
 html[mip-xiaoshuo-read-theme="paper"] mip-xiaoshuo-read [content] {
+    -webkit-transition: background-color ease 240ms;
+    transition: background-color ease 240ms;
     background-color: #ecdabb;
     color: #412B1A;
 }
+
 html[mip-xiaoshuo-read-theme="night"] mip-xiaoshuo-read {
     [content] {
+        -webkit-transition: background-color ease 240ms;
+        transition: background-color ease 240ms;
         background-color: #000;
         color: #333;
     }
@@ -224,12 +307,72 @@ html[mip-xiaoshuo-read-theme="night"] mip-xiaoshuo-read {
         color: #666;
     }
     .disabled {
+
         color: #333;
     }
     input[type=range]::-webkit-slider-thumb {
+
         background-color: #999;
     }
 }
+
+input[type=range]:focus::-ms-fill-lower {
+    background: linear-gradient(to right, #059CFA, white 100%, white);
+    background: linear-gradient(#059CFA, #059CFA) no-repeat;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+    background: #ffffff;
+    background: linear-gradient(#059CFA, #059CFA) no-repeat;
+}
+
+@-webkit-keyframes anim {
+    0% {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    }
+    100% {
+        opacity: .1;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=10)";
+    }
+}
+
+@-webkit-keyframes control {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0);
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+}
+
+@-webkit-keyframes themechange {
+    0% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+}
+
+@-webkit-keyframes controlre {
+    0% {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0)
+    }
+
+    100% {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100%, 0)
+    }
+}
+
 // 主题按钮高亮
 html[mip-xiaoshuo-read-theme="green"] .mip-xiaoshuo-read-control-theme .theme-green,
 html[mip-xiaoshuo-read-theme="default"] .mip-xiaoshuo-read-control-theme .theme-default,
